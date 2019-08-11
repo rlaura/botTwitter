@@ -10,7 +10,7 @@ OAUTH_TOKEN_SECRET = 'TU_OAUTH_TOKEN_SECRETO'
 twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 followers = []
 
-datestamp = datetime.datetime.now().strftime("%Y-%m-%d")
+fecha = datetime.datetime.now().strftime("%Y-%m-%d")
 username = input("Ingresa el nombre de usuario: ")
 
 next_cursor = -1
