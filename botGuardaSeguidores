@@ -1,0 +1,29 @@
+from twython import Twython, TwythonError
+import datetime
+
+""" CREÁ TU APP, LUEGO COPIÁ ESTOS DATOS: """
+APP_KEY = 'TU_APP_KEY'
+APP_SECRET = 'TU_APP_KEY_SECRETA'
+OAUTH_TOKEN = 'TU_OAUTH_TOKEN'
+OAUTH_TOKEN_SECRET = 'TU_OAUTH_TOKEN_SECRETO' 
+
+twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+followers = []
+
+datestamp = datetime.datetime.now().strftime("%Y-%m-%d")
+username = input("Ingresa el nombre de usuario: ")
+
+next_cursor = -1
+
+while(next_cursor):
+    get_followers = twitter.get_followers_list(screen_name=username,count=200,cursor=next_cursor)
+    followers_text = open("URL_PATH"+username+".txt","a")
+    followers_text.write(str(datestamp) + " " +username + "tiene los siguientes seguidores: \n")
+    for follower in get_followers["users"]:
+        followers.append(follower["screen_name"].encode("utf-8"))
+        followers_text.write("ID: " + str(follower["id"]) + ". Usuario: " +follower["screen_name"] + ". Lugar: " +follower["location"] + "\n")
+        next_cursor = get_followers["next_cursor"]
+		        
+followers_text.close()
+print('OK')
+		
