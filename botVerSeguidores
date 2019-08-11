@@ -16,16 +16,16 @@ try:
 		while(next_cursor):
 			# OBTIENE LA LISTA DE SEGUIDORES DEL USUARIO QUE SE PASE COMO PARÁMETRO EN screen_name 
       # count INDICA LA CANTIDAD DE USUARIOS POR PÁGINA QUE VAMOS A MOSTRAR
-			get_followers = twitter.get_followers_list(screen_name='ushcris',count=150,cursor=next_cursor)
+			get_followers = twitter.get_followers_list(screen_name='USER_NAME',count=150,cursor=next_cursor)
 			# DEVUELVE EN UNA LISTA ORDENADA CADA UNO DE LOS USUARIOS QUE HAYA EN LA LISTA
 			
 			for follower in get_followers["users"]:
 			    print(str(x) + ": " + follower["screen_name"])
-          # SI QUEREMOS AGREGAR UN SEPARADOR ENTRE USUARIOS, LO PODEMOS PONER ACÁ: print('-------') 
+          		# SI QUEREMOS AGREGAR UN SEPARADOR ENTRE USUARIOS, LO PODEMOS PONER ACÁ: print('-------') 
 
 			    next_cursor = get_followers["next_cursor"]
 			    x = x + 1
-          p = p + 1
+          		p = p + 1
       # PIE DE PÁGINA . VA A MOSTRAR ESTE PIE AL FINAL DE CADA PÁGINA, CUANDO LLEGUE AL COUNT QUE LE INDICAMOS.     
 			print('-------' + 'Pag. ' + str(p)) 
 
