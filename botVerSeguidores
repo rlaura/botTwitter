@@ -1,0 +1,35 @@
+from twython import Twython, TwythonError
+import time
+
+
+""" CREÁ TU APP, LUEGO COPIÁ ESTOS DATOS: """
+APP_KEY = 'TU_APP_KEY'
+APP_SECRET = 'TU_APP_KEY_SECRETA'
+OAUTH_TOKEN = 'TU_OAUTH_TOKEN'
+OAUTH_TOKEN_SECRET = 'TU_OAUTH_TOKEN_SECRETO' 
+
+try:
+		twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+		next_cursor = -1
+		x = 1
+    p = 0
+		while(next_cursor):
+			# OBTIENE LA LISTA DE SEGUIDORES DEL USUARIO QUE SE PASE COMO PARÁMETRO EN screen_name 
+      # count INDICA LA CANTIDAD DE USUARIOS POR PÁGINA QUE VAMOS A MOSTRAR
+			get_followers = twitter.get_followers_list(screen_name='ushcris',count=150,cursor=next_cursor)
+			# DEVUELVE EN UNA LISTA ORDENADA CADA UNO DE LOS USUARIOS QUE HAYA EN LA LISTA
+			
+			for follower in get_followers["users"]:
+				# Add their screen name to our followers list
+			    print(str(x) + ": " + follower["screen_name"])
+          # SI QUEREMOS AGREGAR UN SEPARADOR ENTRE USUARIOS, LO PODEMOS PONER ACÁ: print('-------') 
+
+			    next_cursor = get_followers["next_cursor"]
+			    x = x + 1
+          p = p + 1
+      # PIE DE PÁGINA . VA A MOSTRAR ESTE PIE AL FINAL DE CADA PÁGINA, CUANDO LLEGUE AL COUNT QUE LE INDICAMOS.     
+			print('-------' + 'Pag. ' + str(p)) 
+
+
+except TwythonError as e:
+	print (e)			
