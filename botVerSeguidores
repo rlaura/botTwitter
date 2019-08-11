@@ -20,7 +20,6 @@ try:
 			# DEVUELVE EN UNA LISTA ORDENADA CADA UNO DE LOS USUARIOS QUE HAYA EN LA LISTA
 			
 			for follower in get_followers["users"]:
-				# Add their screen name to our followers list
 			    print(str(x) + ": " + follower["screen_name"])
           # SI QUEREMOS AGREGAR UN SEPARADOR ENTRE USUARIOS, LO PODEMOS PONER ACÁ: print('-------') 
 
