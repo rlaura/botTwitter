@@ -9,17 +9,14 @@ OAUTH_TOKEN_SECRET = 'TU_OAUTH_TOKEN_SECRETO'
 
 try:
 		twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-		next_cursor = -1
-
-		while(next_cursor):
 		# OBTIENE LA LISTA DE SEGUIDORES DEL USUARIO QUE SE PASE COMO PARÁMETRO EN screen_name
-		get_followers = twitter.get_followers_list(screen_name='USERNAME',count='CANTIDAD_DE_SEGUIDORES_QUE_QUEREMOS_VER',cursor=next_cursor)
+		get_followers = twitter.get_followers_list(screen_name='USERNAME',count='CANTIDAD_DE_SEGUIDORES_QUE_QUEREMOS_VER')
 		# DEVUELVE EN UNA LISTA ORDENADA CADA UNO DE LOS USUARIOS QUE HAYA EN LA LISTA
 		x = 1
 		for follower in get_followers["users"]:
 			# IMPRIME UN NÚMERO DE ORDEN Y EL NOMBRE DEL SEGUIDOR
 		    print(str(x) + ": " + follower["screen_name"])
-		    next_cursor = get_followers["next_cursor"]
+		   
 		    x = x + 1
 
 except TwythonError as e:
