@@ -18,7 +18,7 @@ next_cursor = -1
 while(next_cursor):
     get_followers = twitter.get_followers_list(screen_name=username,count=200,cursor=next_cursor)
     followers_text = open("URL_PATH"+username+".txt","a")
-    followers_text.write(str(datestamp) + " " +username + "tiene los siguientes seguidores: \n")
+    followers_text.write(datestamp + " " +username + "tiene los siguientes seguidores: \n")
     for follower in get_followers["users"]:
         followers.append(follower["screen_name"].encode("utf-8"))
         followers_text.write("ID: " + str(follower["id"]) + ". Usuario: " +follower["screen_name"] + ". Lugar: " +follower["location"] + "\n")
