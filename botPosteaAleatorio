@@ -1,0 +1,65 @@
+from twython import Twython, TwythonError
+
+""" CREÁ TU APP, LUEGO COPIÁ ESTOS DATOS: """
+APP_KEY = 'TU_APP_KEY'
+APP_SECRET = 'TU_APP_KEY_SECRETA'
+OAUTH_TOKEN = 'TU_OAUTH_TOKEN'
+OAUTH_TOKEN_SECRET = 'TU_OAUTH_TOKEN_SECRETO' 
+
+try:
+		twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+		temas = ["tema1","tema2"]
+
+		tema1 = [
+			"frase1",
+			"frase2",
+      "frase3",
+      "frase4",
+      "frase5"
+			]
+
+		tema2 = [
+			"frase1",
+			"frase2",
+      "frase3",
+      "frase4",
+      "frase5"
+		    ]
+		img = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,16,17,18,19,20,21,22,23,24,25]
+		x=1
+		while (x < 3):
+			#t = 30
+			tema = random.choice(temas)
+
+			if (tema == 'tema1'):
+				message = random.choice(tema1)
+				if(x%2==0):
+						twitter.update_status(status=message)
+				else:
+						imgc = random.choice(img)
+						img.remove(imgc)
+						tema1.remove(message)
+						photo = open('PATH_IMG/img.jpg', 'rb')
+						response = twitter.upload_media(media=photo)
+						twitter.update_status(status=message, media_ids=[response['media_id']])
+			else:
+					
+
+				if (tema == 'tema2'):
+					twitter.update_status(status=message)
+					tema2.remove(message)
+					
+			x = x + 1
+			print("Frase twitteada: " + message)
+			
+			time.sleep(900)		
+
+		#	while (t > 0):
+		#		print(t)
+		#		t = t - 1
+		#		time.sleep(0.5)
+		#	print("\n")
+
+		print('Ya posteamos ' + str(x) + ' mensajes hoy.')	
+except TwythonError as e:
+	print (e)			
