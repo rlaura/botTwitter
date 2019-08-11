@@ -16,7 +16,7 @@ try:
 		for follower in get_followers["users"]:
 			# IMPRIME UN NÚMERO DE ORDEN Y EL NOMBRE DEL SEGUIDOR
 		    print(str(x) + ": " + follower["screen_name"])
-		   
+		    time.sleep(1)
 		    x = x + 1
 
 except TwythonError as e:
